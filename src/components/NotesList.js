@@ -4,7 +4,7 @@ function NotesList({ notes, toggleImportance,mySearchRes }) {
     return (
         <div>
             {
-                mySearchRes.length > 0 ? 
+               mySearchRes && mySearchRes.length >=1 ? 
                     mySearchRes.map((note) => (
                         <MyNote
                             key={note.id}

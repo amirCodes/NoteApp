@@ -18,13 +18,23 @@ const Home = () => {
         // console.log(e.target.value)
     }
     useEffect(() => {
-        // console.log('effect')
-        axios
-            .get('http://localhost:3001/notes')
-            .then(response => {
-                // console.log('promise fulfilled')
-                setNotes(response.data)
-            })
+    noteService
+      .getAll()
+      .then(initialNotes => {
+        setNotes(initialNotes)
+      })
+      .catch(error => {
+       setErrorMessage('Faild to get data from server');
+     })
+        // axios      // moved the promise to the utils 
+        //     .get('http://localhost:3001/notes')
+        //     .then(response => {
+        //         setNotes(response.data)
+        //     })
+        //      .catch(error => {
+        //      setErrorMessage('Faild to get data from server');
+        //     })
+        // console.log(notes)
     }, [])
     // console.log('render', notes.length, 'notes')
 
@@ -37,12 +47,36 @@ const Home = () => {
             id: notes.length + 1
         };
         // setNotes(...notes,noteObject);
-        setNotes(notes.concat(noteObject));
-        setNewNote("");
+        // setNotes(notes.concat(noteObject));
+        // setNewNote("");
+        // axios  // moved to utils
+        //     .post('http://localhost:3001/notes', noteObject)
+        //     .then(response => {
+        //         setNotes(notes.concat(response.data))
+        //         setNewNote('')
+        //     })
+            
+     noteService
+      .create(noteObject)
+      .then(returnedNote => {
+        setNotes(notes.concat(returnedNote))
+        setNewNote('')
+      })
+    .catch(error => {
+                setErrorMessage('Faild to Post data to server, make sure your sever is running accordingly');
+                alert(
+                    `Faild to Post data to server`
+                );
+            })
     }
+
+
+
     const handleNoteSearch = (e) => {
         setSearchInput(e.target.value);
     }
+
+
     const handleSearchResult = (searchValue) => {
         setSearchInput(searchValue);
         // console.log(searchResult);
@@ -71,6 +105,7 @@ const Home = () => {
             .then((returnedNote) => {
                 setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
             })
+            
             .catch((error) => {
                 setErrorMessage(
                     `Note '${note.content}' was already removed from server`
@@ -80,6 +115,7 @@ const Home = () => {
                 }, 5000);
             });
     };
+  
     return (
         <div style={{ padding: '20px' }}>
             <Notification message={errorMessage} />
