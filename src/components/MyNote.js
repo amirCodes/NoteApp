@@ -1,12 +1,12 @@
-import { Card, Image, Button } from "semantic-ui-react";
-import avatar from '../assets/logo.svg';
-import 'semantic-ui-css/semantic.min.css';
-const MyNote = ({ note, myNote, toggleImportance }) => {
-  const label = note.important ? "make not important" : "make important";
+import { Card, Image, Button } from 'semantic-ui-react'
+import avatar from '../assets/logo.svg'
+import 'semantic-ui-css/semantic.min.css'
+const MyNote = ({ note, myNote, toggleImportance, deleteNote }) => {
+  const label = note.important ? 'make not important' : 'make important'
   // const noteStyle = {
-  //   color: "black",
-  //   fontSize: "14px",
-  //   margin: "2px"
+  //   color: 'black',
+  //   fontSize: '14px',
+  //   margin: '2px'
   // };
   // console.log(myNote)
   return (
@@ -28,17 +28,26 @@ const MyNote = ({ note, myNote, toggleImportance }) => {
           <div className='ui two buttons'>
             <Button basic color='green'
               onClick={toggleImportance}
-              className="btn btn-primary"
-              data-bs-toggle="button"
-              autoComplete="off"
+              className='btn btn-primary'
+              data-bs-toggle='button'
+              autoComplete='off'
+              style={{ marginRight: '3px' }}
+
             >
               {label}
+            </Button> &nbsp;&#160;&#160;&#160;
+            <Button basic color='red'
+              onClick={deleteNote}
+              className='btn btn-primary'
+              style={{ marginLeft: '3px' }}
+            >
+              Delete note
             </Button>
           </div>
         </Card.Content>
       </Card>
     </Card.Group>
-  );
-};
+  )
+}
 
 export default MyNote

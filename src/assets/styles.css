@@ -10,3 +10,25 @@
         transform: rotate(360deg);
     }
 } */
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.row {
+    display: flex;
+    padding: 2%;
+}
+
+img {
+    width: 50%;
+}
+
+@media screen and (max-width: 650px) {
+    .img {
+        width: 100%;
+        overflow: hidden;
+    }
+}

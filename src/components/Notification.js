@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
 const Notification = ({ message }) => {
-    if (message === null) {
-      return null;
-    }
-    return <div className="error" style={{color:'red'}}>{message}</div>;
-  };
+  if (message === null) {
+    return null
+  }
+  return <div className='error' style={{ color: 'red' }}>{message}</div>
+}
 
-  export default Notification;
+export default Notification

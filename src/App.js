@@ -1,30 +1,30 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import HomepageLayout from './components/Home'
 import About from './components/AboutUs'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import MyProfile from './components/MyProfile'
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <Router>
           <NavBar />
           <Route
-            path="/home"
+            path='/home'
             exact
             render={() =>
               <HomepageLayout />}
           />
           <Route
-            path="/about"
+            path='/about'
             exact
             render={() =>
               <About />}
           />
           <Route
-            path="/profile"
+            path='/profile'
             exact
             render={() =>
               <MyProfile />}
@@ -32,8 +32,8 @@ class App extends React.Component {
           <Footer />
         </Router>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
