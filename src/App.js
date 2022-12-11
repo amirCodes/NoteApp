@@ -12,7 +12,7 @@ class App extends React.Component {
         <Router>
           <NavBar />
           <Route
-            path='/home'
+            path='/'
             exact
             render={() =>
               <HomepageLayout />}
